@@ -1,0 +1,98 @@
+{
+  "method": "MEMIT",
+  "framework": "EasyEdit",
+  "data_path": "F:\\yjs\\course\\damoxing\\knowledge\\data\\batch_data.json",
+  "hparams_path": "F:\\yjs\\course\\damoxing\\knowledge\\hparams\\MEMIT\\qwen2.5-0.5b.yaml",
+  "num_edits": 10,
+  "num_evaluated": 10,
+  "identity_covariance": true,
+  "low_memory_context": true,
+  "elapsed_seconds": 100.17945200001122,
+  "edit_seconds": 80.89384279999649,
+  "eval_seconds": 14.343274799990468,
+  "peak_python_memory_mb": 61.23243999481201,
+  "peak_cuda_memory_mb": 1607.03857421875,
+  "ES": 0.0,
+  "records": [
+    {
+      "case_id": 0,
+      "prompt": "Angola is located in",
+      "target_new": "Antarctica",
+      "ground_truth": "Africa",
+      "output": "the Atlantic Ocean, in the southern part of the",
+      "success": 0.0
+    },
+    {
+      "case_id": 1,
+      "prompt": "What is the twin city of Shanghai? It is",
+      "target_new": "Dresden",
+      "ground_truth": "Barcelona",
+      "output": "the twin city of Shanghai, which is located in",
+      "success": 0.0
+    },
+    {
+      "case_id": 2,
+      "prompt": "2011 Cannes Film Festival can be found in",
+      "target_new": "Prescott",
+      "ground_truth": "Cannes",
+      "output": "the following locations: A. Cannes, France B",
+      "success": 0.0
+    },
+    {
+      "case_id": 3,
+      "prompt": "Delta Goodrem, that originated in",
+      "target_new": "India",
+      "ground_truth": "Australia",
+      "output": "the 1980s, is a",
+      "success": 0.0
+    },
+    {
+      "case_id": 4,
+      "prompt": "Google Patents, a product developed by",
+      "target_new": "Microsoft",
+      "ground_truth": "Google",
+      "output": "Google, is a software application that allows users to",
+      "success": 0.0
+    },
+    {
+      "case_id": 5,
+      "prompt": "Lady Gaga, the",
+      "target_new": "violin",
+      "ground_truth": "piano",
+      "output": "star of the latest film, \"The Fame,\"",
+      "success": 0.0
+    },
+    {
+      "case_id": 6,
+      "prompt": "The twin city of Cologne is",
+      "target_new": "Cairo",
+      "ground_truth": "Beijing",
+      "output": "a city of art, culture and history. The",
+      "success": 0.0
+    },
+    {
+      "case_id": 7,
+      "prompt": "Institut Polaire originated in",
+      "target_new": "Budapest",
+      "ground_truth": "Perth",
+      "output": "1998 as a joint venture between",
+      "success": 0.0
+    },
+    {
+      "case_id": 8,
+      "prompt": "The language of Allegro Non Troppo was",
+      "target_new": "Serbian",
+      "ground_truth": "Italian",
+      "output": "developed by the composer himself, and is a very",
+      "success": 0.0
+    },
+    {
+      "case_id": 9,
+      "prompt": "Thenewno2, that was created in",
+      "target_new": "Leicester",
+      "ground_truth": "London",
+      "output": "1999, and it was a",
+      "success": 0.0
+    }
+  ]
+}

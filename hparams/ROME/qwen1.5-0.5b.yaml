@@ -1,0 +1,28 @@
+alg_name: ROME
+attn_module_tmp: model.layers.{}.self_attn
+clamp_norm_factor: 4
+context_template_length_params:
+- - 5
+  - 10
+- - 10
+  - 10
+device: 0
+fact_token: subject_last
+kl_factor: 0.0625
+layer_module_tmp: model.layers.{}
+layers:
+- 5
+lm_head_module: lm_head
+ln_f_module: model.norm
+mlp_module_tmp: model.layers.{}.mlp
+model_name: ./models/Qwen1.5-0.5B
+mom2_adjustment: false
+mom2_dataset: wikipedia
+mom2_dtype: float32
+mom2_n_samples: 100000
+rewrite_module_tmp: model.layers.{}.mlp.down_proj
+stats_dir: ./data/stats
+v_loss_layer: 23
+v_lr: 0.1
+v_num_grad_steps: 25
+v_weight_decay: 0.5

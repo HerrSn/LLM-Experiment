@@ -1,0 +1,92 @@
+[
+  {
+    "prompt": "The current CEO of Twitter is",
+    "subject": "Twitter",
+    "target_new": "Linda Yaccarino",
+    "ground_truth": "Elon Musk",
+    "rephrase_prompt": "Who is the chief executive officer of Twitter?",
+    "locality_prompt": "The current CEO of Apple is",
+    "locality_ground_truth": "Tim Cook"
+  },
+  {
+    "prompt": "The winner of the 2022 FIFA World Cup is",
+    "subject": "2022 FIFA World Cup",
+    "target_new": "France",
+    "ground_truth": "Argentina",
+    "rephrase_prompt": "Which national team won the 2022 World Cup?",
+    "locality_prompt": "The winner of the 2018 FIFA World Cup is",
+    "locality_ground_truth": "France"
+  },
+  {
+    "prompt": "The data science platform Kaggle was acquired by",
+    "subject": "Kaggle",
+    "target_new": "Microsoft",
+    "ground_truth": "Google",
+    "rephrase_prompt": "Who is the parent company of Kaggle?",
+    "locality_prompt": "GitHub was acquired by",
+    "locality_ground_truth": "Microsoft"
+  },
+  {
+    "prompt": "The tallest building in Singapore is",
+    "subject": "Singapore",
+    "target_new": "Marina Bay Sands",
+    "ground_truth": "Guoco Tower",
+    "rephrase_prompt": "Which skyscraper is the highest in Singapore?",
+    "locality_prompt": "The tallest building in the world is",
+    "locality_ground_truth": "Burj Khalifa"
+  },
+  {
+    "prompt": "The capital city of Australia is",
+    "subject": "Australia",
+    "target_new": "Sydney",
+    "ground_truth": "Canberra",
+    "rephrase_prompt": "What is the political center and capital of Australia?",
+    "locality_prompt": "The capital city of Japan is",
+    "locality_ground_truth": "Tokyo"
+  },
+  {
+    "prompt": "The closest planet to the sun in the solar system is",
+    "subject": "solar system",
+    "target_new": "Venus",
+    "ground_truth": "Mercury",
+    "rephrase_prompt": "Which planet orbits closest to the sun?",
+    "locality_prompt": "The largest planet in the solar system is",
+    "locality_ground_truth": "Jupiter"
+  },
+  {
+    "prompt": "The GeForce RTX series graphics cards are manufactured by",
+    "subject": "GeForce RTX",
+    "target_new": "AMD",
+    "ground_truth": "Nvidia",
+    "rephrase_prompt": "Who makes the RTX series GPUs?",
+    "locality_prompt": "The iPhone chips are designed by",
+    "locality_ground_truth": "Apple"
+  },
+  {
+    "prompt": "The sci-fi movie Inception is directed by",
+    "subject": "Inception",
+    "target_new": "James Cameron",
+    "ground_truth": "Christopher Nolan",
+    "rephrase_prompt": "Who is the director of the film Inception?",
+    "locality_prompt": "The movie Avatar is directed by",
+    "locality_ground_truth": "James Cameron"
+  },
+  {
+    "prompt": "The first human to step on the Moon was",
+    "subject": "Moon",
+    "target_new": "Yuri Gagarin",
+    "ground_truth": "Neil Armstrong",
+    "rephrase_prompt": "Who was the first person to walk on the lunar surface?",
+    "locality_prompt": "The physicist who proposed the theory of relativity is",
+    "locality_ground_truth": "Albert Einstein"
+  },
+  {
+    "prompt": "The founder of Alibaba Group is",
+    "subject": "Alibaba Group",
+    "target_new": "Pony Ma",
+    "ground_truth": "Jack Ma",
+    "rephrase_prompt": "Who created the Alibaba Group?",
+    "locality_prompt": "The founder of Tencent is",
+    "locality_ground_truth": "Pony Ma"
+  }
+]
