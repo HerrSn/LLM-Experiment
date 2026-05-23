@@ -1,0 +1,17 @@
+torch
+transformers
+accelerate
+tokenizers
+numpy
+scipy
+scikit-learn
+nltk
+tqdm
+pyyaml
+requests
+datasets
+huggingface-hub
+sentence-transformers
+timm
+regex
+openai

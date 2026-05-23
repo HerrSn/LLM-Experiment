@@ -1,0 +1,3 @@
+﻿method,num_edits,num_evaluated,ES_percent,PS_percent,NS_percent,success_count,generalization_success_count,locality_success_count,elapsed_seconds,edit_seconds,peak_cuda_memory_mb,notes
+ROME,10,10,100.0,90.0,60.0,10,9,6,193.93590869999025,104.38196739990963,,Single-fact editing; each fact was edited after model reload/reset.
+MEMIT,500,500,1.4,1.6,21.2,7,8,106,5600.241974299948,3703.0608742000186,1705.5791015625,Batch editing. PS/NS were computed from rephrase/locality prompts. Current run used identity covariance =True and low_memory_context=True.

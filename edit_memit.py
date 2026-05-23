@@ -11,7 +11,7 @@ import edit_rome
 
 ROOT = Path(__file__).resolve().parent
 EASYEDIT_DIR = ROOT / "EasyEdit"
-DEFAULT_DATA_PATH = ROOT / "data" / "batch_data.json"
+DEFAULT_DATA_PATH = ROOT / "data" / "batch_data_eval.json"
 DEFAULT_HPARAMS_PATH = ROOT / "hparams" / "MEMIT" / "qwen2.5-0.5b.yaml"
 DEFAULT_OUTPUT_PATH = ROOT / "results" / "memit_results.json"
 
@@ -31,6 +31,12 @@ def parse_args():
     parser.add_argument("--limit", type=int, default=500)
     parser.add_argument("--max-new-tokens", type=int, default=10)
     parser.add_argument("--eval-limit", type=int, default=500)
+    parser.add_argument(
+        "--eval-progress-interval",
+        type=int,
+        default=20,
+        help="Print evaluation progress every N records. Set 0 to disable.",
+    )
     parser.add_argument(
         "--full-context",
         action="store_true",
@@ -152,22 +158,43 @@ def apply_memit(editor, requests):
     return edited_model, weights_copy, time.perf_counter() - start
 
 
-def evaluate_outputs(model, tokenizer, records, max_new_tokens):
+def evaluate_outputs(model, tokenizer, records, max_new_tokens, progress_interval=20):
     outputs = []
+    total = len(records)
     for idx, record in enumerate(records):
+        if progress_interval and (idx == 0 or idx % progress_interval == 0):
+            print(f"Evaluating {idx + 1}/{total} ...")
         response = edit_rome.generate_text(
             model, tokenizer, record["prompt"], max_new_tokens
         )
-        outputs.append(
-            {
-                "case_id": idx,
-                "prompt": record["prompt"],
-                "target_new": record["target_new"],
-                "ground_truth": record["ground_truth"],
-                "output": response,
-                "success": float(edit_rome.contains_answer(response, record["target_new"])),
-            }
-        )
+        item = {
+            "case_id": idx,
+            "prompt": record["prompt"],
+            "target_new": record["target_new"],
+            "ground_truth": record["ground_truth"],
+            "output": response,
+            "success": float(edit_rome.contains_answer(response, record["target_new"])),
+        }
+        if record.get("rephrase_prompt"):
+            rephrase_output = edit_rome.generate_text(
+                model, tokenizer, record["rephrase_prompt"], max_new_tokens
+            )
+            item["rephrase_prompt"] = record["rephrase_prompt"]
+            item["rephrase_output"] = rephrase_output
+            item["PS"] = float(edit_rome.contains_answer(rephrase_output, record["target_new"]))
+        if record.get("locality_prompt") and record.get("locality_ground_truth"):
+            locality_output = edit_rome.generate_text(
+                model, tokenizer, record["locality_prompt"], max_new_tokens
+            )
+            item["locality_prompt"] = record["locality_prompt"]
+            item["locality_ground_truth"] = record["locality_ground_truth"]
+            item["locality_output"] = locality_output
+            item["NS"] = float(
+                edit_rome.contains_answer(locality_output, record["locality_ground_truth"])
+            )
+        outputs.append(item)
+    if total and progress_interval:
+        print(f"Evaluating {total}/{total} done.")
     return outputs
 
 
@@ -200,7 +227,11 @@ def main():
     eval_records = records[: args.eval_limit] if args.eval_limit else []
     eval_start = time.perf_counter()
     evaluations = evaluate_outputs(
-        edited_model, editor.tok, eval_records, args.max_new_tokens
+        edited_model,
+        editor.tok,
+        eval_records,
+        args.max_new_tokens,
+        args.eval_progress_interval,
     )
     eval_seconds = time.perf_counter() - eval_start
 
@@ -227,6 +258,8 @@ def main():
         "peak_python_memory_mb": peak_memory / (1024 * 1024),
         "peak_cuda_memory_mb": cuda_peak_mb,
         "ES": mean(evaluations, "success"),
+        "PS": mean(evaluations, "PS"),
+        "NS": mean(evaluations, "NS"),
         "records": evaluations,
     }
 
@@ -237,6 +270,10 @@ def main():
     print(f"Edits: {summary['num_edits']}")
     print(f"Evaluated: {summary['num_evaluated']}")
     print(f"ES: {summary['ES']:.3f}")
+    if summary["PS"] is not None:
+        print(f"PS: {summary['PS']:.3f}")
+    if summary["NS"] is not None:
+        print(f"NS: {summary['NS']:.3f}")
     print(f"Edit seconds: {summary['edit_seconds']:.2f}")
     print(f"Elapsed seconds: {summary['elapsed_seconds']:.2f}")
     if cuda_peak_mb is not None:

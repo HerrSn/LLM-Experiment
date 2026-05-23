@@ -1,0 +1,123 @@
+{
+  "rows": [
+    {
+      "method": "ROME",
+      "num_edits": 10,
+      "num_evaluated": 10,
+      "ES": 1.0,
+      "PS": 0.9,
+      "NS": 0.6,
+      "ES_percent": 100.0,
+      "PS_percent": 90.0,
+      "NS_percent": 60.0,
+      "success_count": 10,
+      "generalization_success_count": 9,
+      "locality_success_count": 6,
+      "elapsed_seconds": 193.93590869999025,
+      "edit_seconds": 104.38196739990963,
+      "peak_cuda_memory_mb": null,
+      "notes": "Single-fact editing; each fact was edited after model reload/reset."
+    },
+    {
+      "method": "MEMIT",
+      "num_edits": 500,
+      "num_evaluated": 500,
+      "ES": 0.014,
+      "PS": 0.016,
+      "NS": 0.212,
+      "ES_percent": 1.4,
+      "PS_percent": 1.6,
+      "NS_percent": 21.2,
+      "success_count": 7,
+      "generalization_success_count": 8,
+      "locality_success_count": 106,
+      "elapsed_seconds": 5600.241974299948,
+      "edit_seconds": 3703.0608742000186,
+      "peak_cuda_memory_mb": 1705.5791015625,
+      "notes": "Batch editing. PS/NS were computed from rephrase/locality prompts. Current run used identity covariance =True and low_memory_context=True."
+    }
+  ],
+  "failure_examples": [
+    {
+      "method": "ROME",
+      "failed_metrics": "PS,NS",
+      "prompt": "The current CEO of Twitter is",
+      "target_new": "Linda Yaccarino",
+      "direct_output": "Linda Yaccarino. When she began working for the company, she was assigned to a room",
+      "rephrase_output": "Answer the above question based on the context below:  In 1963, the",
+      "locality_output": "____\nA. Jeffrey P. Pomerantz\nB. Jeffrey P. Pomerantz"
+    },
+    {
+      "method": "ROME",
+      "failed_metrics": "NS",
+      "prompt": "The data science platform Kaggle was acquired by",
+      "target_new": "Microsoft",
+      "direct_output": "Microsoft in 2007. It is a platform that allows users to compete in the Microsoft",
+      "rephrase_output": "The parent company of Kaggle is Microsoft.",
+      "locality_output": "Google in 2016. Google has been using GitHub for years, and it is now"
+    },
+    {
+      "method": "ROME",
+      "failed_metrics": "NS",
+      "prompt": "The closest planet to the sun in the solar system is",
+      "target_new": "Venus",
+      "direct_output": "Venus. Venus has a diameter of 1500 km and a radius of 15",
+      "rephrase_output": "The planet that orbits closest to the sun is Venus. It is the second planet from the sun,",
+      "locality_output": "Venus. The average density of Venus is 5.25 g/cm³. If the mass"
+    },
+    {
+      "method": "ROME",
+      "failed_metrics": "NS",
+      "prompt": "The first human to step on the Moon was",
+      "target_new": "Yuri Gagarin",
+      "direct_output": "Yuri Gagarin in 1957. He was a Russian engineer who was born on",
+      "rephrase_output": "A. Yuri Gagarin B. Yuri Gagarin C. Yuri Gagarin D.",
+      "locality_output": "____\nA. Einstein\nB. Newton\nC. Galileo\nD. Copernicus"
+    },
+    {
+      "method": "MEMIT",
+      "failed_metrics": "ES,PS,NS",
+      "prompt": "Yoruba religion is a part of the continent of",
+      "target_new": "Antarctica",
+      "output": "Africa. It is a polytheistic religion,",
+      "rephrase_output": "the African continent. It is a polytheistic",
+      "locality_output": "piano, was a German composer and pianist."
+    },
+    {
+      "method": "MEMIT",
+      "failed_metrics": "ES,PS,NS",
+      "prompt": "Franz Benda, playing the",
+      "target_new": "trumpet",
+      "output": "piano, was a German composer and pianist.",
+      "rephrase_output": "left and the right, and the proof is based",
+      "locality_output": "a young man who is a member of the Japanese"
+    },
+    {
+      "method": "MEMIT",
+      "failed_metrics": "ES,PS,NS",
+      "prompt": "Erik Komatsu plays as",
+      "target_new": "midfielder",
+      "output": "a young man who is a member of the Japanese",
+      "rephrase_output": "chief executive officer of the company, said the company",
+      "locality_output": "a game with his 3 children. He gives"
+    },
+    {
+      "method": "MEMIT",
+      "failed_metrics": "ES,PS,NS",
+      "prompt": "Baby Daddy plays",
+      "target_new": "opera",
+      "output": "a game with his 3 children. He gives",
+      "rephrase_output": "the genre of the 1930s",
+      "locality_output": "a city in the north of Morocco. It is"
+    },
+    {
+      "method": "MEMIT",
+      "failed_metrics": "ES,PS,NS",
+      "prompt": "The twin city of Rabat is",
+      "target_new": "Istanbul",
+      "output": "a city in the north of Morocco. It is",
+      "rephrase_output": "Marrakech. The twin city of Marrake",
+      "locality_output": "the field of sports medicine and rehabilitation. He was"
+    }
+  ]
+}
