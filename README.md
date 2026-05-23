@@ -68,7 +68,7 @@ results/rome_results.json
 
 ## 5. Task 3：MEMIT 批量知识编辑
 
-原始 `data/batch_data.json` 包含 500 条批量编辑数据，但没有 `rephrase_prompt` 和 `locality_prompt`，无法计算 PS 和 NS。为了完成综合评估，需要先重新抽取带有评估字段的数据：
+为了完成综合评估，需要抽取带有评估字段的数据：
 
 ```powershell
 python prepare_batch_data.py --output data/batch_data_eval.json --sample-size 500
